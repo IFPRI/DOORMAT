@@ -11,6 +11,8 @@
 #' \dontrun{
 #' tool_get_mapping()
 #' }
+#' @author Abhijeet Mishra
+
 tool_get_mapping <- function(type = "cty") {
   fpath <- system.file("extdata", "regional_mapping.xlsx", package = "DOORMAT")
 

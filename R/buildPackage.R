@@ -15,6 +15,7 @@
 #' \dontrun{
 #' buildPackage()
 #' }
+#' @author Abhijeet Mishra
 
 buildPackage <- function(lib = ".", quiet = FALSE){
   document(lib)
