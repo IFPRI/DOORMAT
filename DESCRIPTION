@@ -2,10 +2,12 @@ Package: DOORMAT
 Type: Package
 Title: Data processor for IMPACT model (*D*ata pr*O*cessor f*O*R i*M*p*A*c*T*)
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Authors@R: 
+    person("Abhijeet", "Mishra",  , "A.Mishra@cgiar.org", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-8287-9922"))
+Maintainer@R: Authors@R: 
+    person("Abhijeet", "Mishra",  , "A.Mishra@cgiar.org", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-8287-9922"))
+Description: Data processor for IMPACT model.
 License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: true
