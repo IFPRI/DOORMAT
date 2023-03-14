@@ -27,8 +27,9 @@ tool_get_mapping <- function(type = "cty") {
                    "AE8:AI17")
 
   if (!type %in% c(type_vector)) {
-    stop("Invalid `type` selection.
-         See ??toolGetMapping for accepted `type` argument")
+    stop(paste("Invalid `type` selection\n",
+               "Available types are ",sep = " "),
+         paste(shQuote(type_vector, type="sh"), collapse=", "))
   }
 
   names(type_vector) <- range_vector
