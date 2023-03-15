@@ -5,9 +5,9 @@
 \title{tool_get_mapping}
 \usage{
 tool_get_mapping(
-  type = "cty",
+  type = NULL,
   file = "mapping_items.xlsx",
-  sheet = "Aggregation Regions",
+  sheet = NULL,
   sp_mapping = "Standard-IMPACT_dis1"
 )
 }

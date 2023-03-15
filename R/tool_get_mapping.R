@@ -7,7 +7,7 @@
 #' @param sp_mapping Column from Aggregation Regions sheet
 #'
 #' @return Mapping object for IMPACT framework
-#' @importFrom readxl read_xlsx
+#' @importFrom readxl read_xlsx excel_sheets
 #' @export
 #'
 #' @examples
@@ -16,9 +16,9 @@
 #' }
 #' @author Abhijeet Mishra
 
-tool_get_mapping <- function(type = "cty",
+tool_get_mapping <- function(type = NULL,
                              file = "mapping_items.xlsx",
-                             sheet = "Aggregation Regions",
+                             sheet = NULL,
                              sp_mapping = "Standard-IMPACT_dis1") {
 
   fpath <- system.file("extdata", file, package = "DOORMAT")
@@ -28,8 +28,11 @@ tool_get_mapping <- function(type = "cty",
                                 " in DOORMAT package installation on ",
                                 .libPaths()[1],
                                 "Make sure that the package installtion exists")
+  if (!(sheet %in% excel_sheets(path = fpath))) {
+    stop("Invalid sheet name. Available sheets - ", excel_sheets(path = fpath))
+  }
 
-  read_mapping_file <- function(fpath, type_vector){
+  read_mapping_file <- function(fpath, type_vector, type){
     read_xlsx(path = fpath,
               range = names(type_vector)[type_vector == type],
               sheet = sheet)
@@ -57,13 +60,17 @@ tool_get_mapping <- function(type = "cty",
            paste(shQuote(type_vector, type = "sh"), collapse = ", "))
     }
 
-    mapping <- read_mapping_file(fpath = fpath, type_vector = type_vector)
+    mapping <- read_mapping_file(fpath = fpath,
+                                 type_vector = type_vector,
+                                 type=type)
 
   } else if (sheet == "Aggregation Regions" && type == "cty") {
     type_vector  <- type
     range_vector <- "A8:T166"
     names(type_vector) <- range_vector
-    mapping <- read_mapping_file(fpath = fpath, type_vector = type_vector)
+    mapping <- read_mapping_file(fpath = fpath,
+                                 type_vector = type_vector,
+                                 type = type)
     message("Returning Standard IMPACT regions. Other available options:\n",
             paste(
               colnames(mapping)[-c(1,length(colnames(mapping)))],
@@ -76,6 +83,30 @@ tool_get_mapping <- function(type = "cty",
     colnames(mapping) <- c("Country","Name","World","Region")
     } else if (sheet == "Aggregation Regions" && type != "cty") {
       stop("'Aggregation Regions' sheet can only be used for cty mapping")
-      }
+
+    } else if (sheet == "Aggregation Crops") {
+      type <- type_vector  <- "DUMMY"
+      range_vector <- "A8:G150"
+      names(type_vector) <- range_vector
+      mapping <- read_mapping_file(fpath = fpath,
+                                   type_vector = type_vector,
+                                   type = type)
+      mapping <- mapping[,c("Commodities",
+                            "Groups",
+                            "Long Name")]
+    } else if (sheet == "param_naming") {
+      type <- type_vector  <- "DUMMY"
+      range_vector <- "A1:B49"
+      names(type_vector) <- range_vector
+      mapping <- read_mapping_file(fpath = fpath,
+                                   type_vector = type_vector,
+                                   type = type)
+      mapping <- mapping[,c("Parameter",
+                            "Description")]
+    }
+  colnames(mapping) <- tolower(colnames(mapping))
+  colnames(mapping) <- gsub(pattern = " ",
+                            replacement = "_",
+                            x = colnames(mapping))
   return(as.data.frame(mapping))
 }

@@ -4,12 +4,12 @@
 \alias{aggregateIMPACT}
 \title{aggregateIMPACT}
 \usage{
-aggregateIMPACT(df = NULL, level = "cty", aggr_type = "sum", weight = NULL)
+aggregateIMPACT(df = NULL, level = "reg", aggr_type = "sum", weight = NULL)
 }
 \arguments{
-\item{df}{dataframe from IMPACT results}
+\item{df}{dataframe from IMPACT results. Likely output of readGDX}
 
-\item{level}{"cty" or "fpu" - choose according to the dataset of IMPACT
+\item{level}{"reg" Short for regional.
 result being passed on to this function}
 
 \item{aggr_type}{sum}
