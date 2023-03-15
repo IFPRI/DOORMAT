@@ -19,4 +19,5 @@ Imports:
     rlang (>= 1.1.0),
     usethis (>= 2.1.6),
     readxl (>= 1.4.2),
-    dplyr (>= 1.1.0)
+    dplyr (>= 1.1.0),
+    gdxrrw (>= 1.0.10)

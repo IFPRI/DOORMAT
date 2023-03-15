@@ -18,8 +18,9 @@
 #' @author Abhijeet Mishra
 
 buildPackage <- function(lib = ".", quiet = FALSE){
-  document(lib)
-  cat("Building package silently\n")
+  cat("Updating NAMESPACE and DESCRIPTION\n")
+  update_namespace_description(pkg = lib)
+  cat("Building package\n")
   check_package <- check(pkg = lib, document = TRUE,
                          check_dir = tempdir(),
                          cran = FALSE,

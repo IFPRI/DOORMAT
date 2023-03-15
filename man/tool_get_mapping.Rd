@@ -4,11 +4,22 @@
 \alias{tool_get_mapping}
 \title{tool_get_mapping}
 \usage{
-tool_get_mapping(type = "cty")
+tool_get_mapping(
+  type = "cty",
+  file = "mapping_items.xlsx",
+  sheet = "Aggregation Regions",
+  sp_mapping = "Standard-IMPACT_dis1"
+)
 }
 \arguments{
 \item{type}{Defaults to "cty" for country mapping. Choose "fpu" for
 IMPACT FPU mapping.}
+
+\item{file}{Mapping file}
+
+\item{sheet}{Sheet from which data is read.}
+
+\item{sp_mapping}{Column from Aggregation Regions sheet}
 }
 \value{
 Mapping object for IMPACT framework
