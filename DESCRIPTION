@@ -20,4 +20,4 @@ Imports:
     usethis (>= 2.1.6),
     readxl (>= 1.4.2),
     dplyr (>= 1.1.0),
-    gdxrrw (>= 1.0.10)
+    gamstransfer (>= 1.6)

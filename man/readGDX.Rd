@@ -15,7 +15,7 @@ readGDX(gdx, name, use_model_name = "IMPACT")
 IMPACT results.}
 }
 \value{
-data frame of gdx output result queried
+Parameter and domain of gdx output result queried
 }
 \description{
 readGDX

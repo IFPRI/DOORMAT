@@ -7,7 +7,7 @@
 #' @param weight Weight by which aggregation can be made
 #'
 #' @return Country or FPU level aggregation of IMPACT results
-#' @importFrom dplyr group_by summarise %>%
+#' @importFrom dplyr group_by summarise %>% across all_of
 #' @importFrom rlang .data
 #' @export
 #' @examples
@@ -27,64 +27,25 @@ aggregateIMPACT <- function(df = NULL,
 
   if (is.null(df)) stop("No dataframe passed to the function. Stopping.")
   if (level == "reg") {
-    if ("cty" %in% colnames(df)) {
-      mapping <- tool_get_mapping(sheet = "Aggregation Regions",
-                                  type = "cty")
-      df2 <- merge(df,mapping,
-                   by.x = "cty",
-                   by.y = "country")
-      df2 <- df2[,c(colnames(df),"region")]
-      if (nrow(df2) != nrow(df)) warning(
+    domain_vector <- sapply(df[["domains"]],
+                            tool_get_domain_mapping,USE.NAMES = T)
+    map_list <- mapply(tool_get_mapping, sheet = domain_vector, USE.NAMES = TRUE)
+    dfx  <- df[["data"]]
+    for(name in names(map_list)){
+      map_dummy <- as.data.frame(map_list[[name]])
+      colnames(map_dummy)[1] <- name
+      temp <- merge(dfx, map_dummy, by = name)
+      if (nrow(temp) != nrow(dfx)) warning(
         "Merge was likley not successful.\nProceed with EXTREME caution")
-      df <- df2
-    }
-
-    if ("c" %in% colnames(df)) {
-      mapping <- tool_get_mapping(sheet = "Aggregation Crops")
-      df2 <- merge(df,mapping,
-                   by.x = "c",
-                   by.y = "commodities")
-      df2 <- df2[,c(colnames(df),"groups", "long_name")]
-      if (nrow(df2) != nrow(df)) warning(
-        "Merge was likley not successful.\nProceed with EXTREME caution")
-      df <- df2
-    }
-
-    if(sum(c("region","groups","long_name") %in% colnames(df))==3){
-      df2 <- df %>%
-        group_by(region,
-                 yrs,
-                 groups,
-                 long_name,
-                 parameter,
-                 model) %>%
-        summarise(value = sum(.data$value))
-      df <- df2
-    }
-    if(sum(c("groups","long_name") %in% colnames(df))==0){
-      df$groups <- NA
-      df$long_name <- NA
-      df2 <- df %>%
-        group_by(region,
-                 yrs,
-                 groups,
-                 long_name,
-                 parameter,
-                 model) %>%
-        summarise(value = sum(.data$value))
-      df <- df2
+      dfx <- temp
     }
   }
-
-  param_naming <- tool_get_mapping(sheet = "param_naming")
-  df2 <- merge(df,param_naming,
-               by.x = "parameter",
-               by.y = "parameter")
-  df2 <- df2[,c(colnames(df),"description")]
-  if (nrow(df2) != nrow(df)) warning(
-    "Merge was likley not successful.\nProceed with EXTREME caution")
-  df <- df2
-
-  out <- df
-  return(as.data.frame(out))
+  if (aggr_type == "sum"){
+    aggr_cols <- colnames(dfx)[!(colnames(dfx) %in% c("c","cty","name","world"))]
+    dfx <- dfx %>%
+      group_by(across(all_of(aggr_cols))) %>%
+      summarise(value = sum(.data$value))
+    out <- dfx
+  }
+  return(out)
 }

@@ -17,7 +17,8 @@ IMPACT FPU mapping.}
 
 \item{file}{Mapping file}
 
-\item{sheet}{Sheet from which data is read.}
+\item{sheet}{Sheet from which data is read. Ideally output of
+tool_get_domain_mapping function}
 
 \item{sp_mapping}{Column from Aggregation Regions sheet}
 }

@@ -16,5 +16,5 @@
 
 update_namespace_description <- function(pkg="."){
   document(pkg=pkg)
-  use_latest_dependencies(overwrite=TRUE, source="CRAN")
+  use_latest_dependencies(overwrite=TRUE, source="local")
 }
