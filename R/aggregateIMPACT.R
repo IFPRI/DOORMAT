@@ -1,6 +1,6 @@
 #' aggregateIMPACT
 #'
-#' @param df dataframe from IMPACT results. Likely output of readGDX
+#' @param df list object from IMPACT results. Likely output of readGDX
 #' @param level "reg" Short for regional.
 #' result being passed on to this function
 #' @param aggr_type sum
@@ -29,7 +29,15 @@ aggregateIMPACT <- function(df = NULL,
   if (level == "reg") {
     domain_vector <- sapply(df[["domains"]],
                             tool_get_domain_mapping,USE.NAMES = T)
-    map_list <- mapply(tool_get_mapping, sheet = domain_vector, USE.NAMES = TRUE)
+    valid_domains <- domain_vector[lapply(domain_vector,length)>0]
+    #valid_domains <- domain_vector
+    # map_list <- mapply(tool_get_mapping,
+    #                    sheet = valid_domains,
+    #                    USE.NAMES = TRUE) # Unlist kicks out empty list element
+    map_list <- list()
+    for(domain_names in names(valid_domains)){
+      map_list[[domain_names]] <- tool_get_mapping(sheet = valid_domains[[domain_names]])
+    }
     dfx  <- df[["data"]]
     for(name in names(map_list)){
       map_dummy <- as.data.frame(map_list[[name]])
@@ -41,11 +49,14 @@ aggregateIMPACT <- function(df = NULL,
     }
   }
   if (aggr_type == "sum"){
-    aggr_cols <- colnames(dfx)[!(colnames(dfx) %in% c("c","cty","name","world"))]
-    dfx <- dfx %>%
+    aggr_cols <- colnames(dfx)[!(colnames(dfx) %in% c(intersect(names(domain_vector),names(valid_domains)),
+                                                      "value","name","world"))]
+    pre_sum <- sum(dfx$value)
+    out <- dfx %>%
       group_by(across(all_of(aggr_cols))) %>%
       summarise(value = sum(.data$value))
-    out <- dfx
+    post_sum <- sum(out$value)
+    if(round(pre_sum) != round(post_sum)) stop("Possible error in aggregation. Contact aggregation script author(s).")
   }
   return(out)
 }

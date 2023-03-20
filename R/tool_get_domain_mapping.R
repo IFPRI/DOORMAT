@@ -20,6 +20,6 @@ tool_get_domain_mapping <- function(domain = NULL,
   mapping <- read_xlsx(path = fpath,
                        sheet = sheet)
   sheet <- mapping$Sheet[mapping$Domain == domain]
-  if(is_empty(sheet)) stop("'",domain, "' not found in mapping")
+  if(is_empty(sheet) && !(domain %in% c('lvsys','h','fctr','lnd'))) stop("'",domain, "' not found in mapping")
   return(sheet)
 }

@@ -28,6 +28,8 @@ readGDX <- function(gdx,name,use_model_name = "IMPACT"){
 
   colnames(df) <- tolower(c(m$data[[property_name]]$domain, "value"))
 
+  df$description <- m$data[[property_name]]$description
+
   domains <- m$data[[property_name]]$domain
   domains <- tolower(domains[!(domains %in% c("YRS","yrs"))])
 

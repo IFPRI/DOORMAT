@@ -7,7 +7,7 @@
 aggregateIMPACT(df = NULL, level = "reg", aggr_type = "sum", weight = NULL)
 }
 \arguments{
-\item{df}{dataframe from IMPACT results. Likely output of readGDX}
+\item{df}{list object from IMPACT results. Likely output of readGDX}
 
 \item{level}{"reg" Short for regional.
 result being passed on to this function}
