@@ -36,8 +36,7 @@ readGDX <- function(gdx,name,use_model_name = "IMPACT"){
   df$model <- use_model_name
 
   df <- df %>% relocate(value, .after = model)
-  message("Returning model name as '", use_model_name,"'",
-          " while reading '", name, "' from\n",gdx)
+  message("Reading '", name, "' from\n",gdx)
   out_list <- list()
   out_list[["data"]] <- df
   out_list[["domains"]] <- domains

@@ -1,6 +1,6 @@
 Package: DOORMAT
 Type: Package
-Title: Data processor for IMPACT model (*D*ata pr*O*cessor f*O*R i*M*p*A*c*T*)
+Title: Data processor for IMPACT model (Data prOcessor fOR iMpAcT)
 Version: 2.0.2
 Authors@R: 
     person("Abhijeet", "Mishra",  , "A.Mishra@cgiar.org", role = c("aut", "cre"),

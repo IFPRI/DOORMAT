@@ -40,11 +40,11 @@ tool_get_mapping <- function(type = NULL,
                          range = range_vector,
                          .name_repair = "unique_quiet")
 
-    message("Returning Standard IMPACT regions. Other available options:\n",
-            paste(
-              colnames(mapping)[-c(1,length(colnames(mapping)))],
-              collapse = ", "),"\n",
-            "This can be changed by setting sp_mapping.")
+    # message("Returning Standard IMPACT regions. Other available options:\n",
+    #         paste(
+    #           colnames(mapping)[-c(1,length(colnames(mapping)))],
+    #           collapse = ", "),"\n",
+    #         "This can be changed by setting sp_mapping.")
     mapping <- mapping[,c("Cty",
                           "LongName",
                           "Standard-IMPACT_glo",
