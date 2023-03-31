@@ -4,6 +4,7 @@
 #' @param name name of the parameter being read
 #' @param use_model_name Which model name should be shown. Use "IMPACT" for
 #' IMPACT results.
+#' @param verbosity If additional messages should be printed about variable being read
 #'
 #' @import gamstransfer
 #' @importFrom dplyr relocate
@@ -16,7 +17,7 @@
 #' }
 #' @author Abhijeet Mishra
 
-readGDX <- function(gdx,name,use_model_name = "IMPACT"){
+readGDX <- function(gdx,name,use_model_name = "IMPACT", verbosity = FALSE){
   value <- model <- NULL
 
   m = Container$new()
@@ -36,7 +37,7 @@ readGDX <- function(gdx,name,use_model_name = "IMPACT"){
   df$model <- use_model_name
 
   df <- df %>% relocate(value, .after = model)
-  message("Reading '", name, "' from\n",gdx)
+  if(verbosity) message("Reading '", name, "' from\n",gdx)
   out_list <- list()
   out_list[["data"]] <- df
   out_list[["domains"]] <- domains
