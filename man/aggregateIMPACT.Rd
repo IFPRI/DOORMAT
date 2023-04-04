@@ -9,10 +9,10 @@ aggregateIMPACT(df = NULL, level = "reg", aggr_type = "sum", weight = NULL)
 \arguments{
 \item{df}{list object from IMPACT results. Likely output of readGDX}
 
-\item{level}{"reg" Short for regional.
+\item{level}{"reg" Short for regional. "regglo" fore regional+global
 result being passed on to this function}
 
-\item{aggr_type}{sum}
+\item{aggr_type}{sum or mean}
 
 \item{weight}{Weight by which aggregation can be made}
 }

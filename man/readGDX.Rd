@@ -4,7 +4,7 @@
 \alias{readGDX}
 \title{readGDX}
 \usage{
-readGDX(gdx, name, use_model_name = "IMPACT")
+readGDX(gdx, name, use_model_name = "IMPACT", verbosity = FALSE)
 }
 \arguments{
 \item{gdx}{Path to the gdx file}
@@ -13,6 +13,8 @@ readGDX(gdx, name, use_model_name = "IMPACT")
 
 \item{use_model_name}{Which model name should be shown. Use "IMPACT" for
 IMPACT results.}
+
+\item{verbosity}{If additional messages should be printed about variable being read}
 }
 \value{
 Parameter and domain of gdx output result queried

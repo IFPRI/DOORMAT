@@ -1,9 +1,9 @@
 #' aggregateIMPACT
 #'
 #' @param df list object from IMPACT results. Likely output of readGDX
-#' @param level "reg" Short for regional.
+#' @param level "reg" Short for regional. "regglo" fore regional+global
 #' result being passed on to this function
-#' @param aggr_type sum
+#' @param aggr_type sum or mean
 #' @param weight Weight by which aggregation can be made
 #'
 #' @return Country or FPU level aggregation of IMPACT results
@@ -22,11 +22,11 @@ aggregateIMPACT <- function(df = NULL,
                             weight = NULL){
 # ****************************************************************************
 # Visible binding for global variable fix
-  region <- yrs <- groups <- long_name <- parameter <- model <- NULL
+  region <- yrs <- groups <- long_name <- parameter <- model <- value <- dfx <- NULL
 # ****************************************************************************
 
   if (is.null(df)) stop("No dataframe passed to the function. Stopping.")
-  if (level == "reg") {
+  if (level %in% c("reg","regglo")) {
     domain_vector <- sapply(df[["domains"]],
                             tool_get_domain_mapping,USE.NAMES = T)
     valid_domains <- domain_vector[lapply(domain_vector,length)>0]
@@ -47,16 +47,48 @@ aggregateIMPACT <- function(df = NULL,
         "Merge was likley not successful.\nProceed with EXTREME caution")
       dfx <- temp
     }
-  }
-  if (aggr_type == "sum"){
-    aggr_cols <- colnames(dfx)[!(colnames(dfx) %in% c(intersect(names(domain_vector),names(valid_domains)),
-                                                      "value","name","world"))]
-    pre_sum <- sum(dfx$value)
-    out <- dfx %>%
-      group_by(across(all_of(aggr_cols))) %>%
-      summarise(value = sum(.data$value))
-    post_sum <- sum(out$value)
-    if(round(pre_sum) != round(post_sum)) stop("Possible error in aggregation. Contact aggregation script author(s).")
+
+    if (aggr_type == "sum"){
+      aggr_cols <- colnames(dfx)[!(colnames(dfx) %in% c(intersect(names(domain_vector),names(valid_domains)),
+                                                        "value","name","world"))]
+      pre_sum <- sum(dfx$value)
+      out <- dfx %>%
+        group_by(across(all_of(aggr_cols))) %>%
+        summarise(value = sum(value))
+      post_sum <- sum(out$value)
+      if(round(pre_sum) != round(post_sum)) stop("Possible error in aggregation. Contact aggregation script author(s).")
+
+      if(level == "regglo"){
+        aggr_cols <- aggr_cols[!(aggr_cols %in% "region")]
+        pre_sum <- sum(out[out$region!="GLO",]$value)
+        out_glo <- out %>%
+          group_by(across(all_of(aggr_cols))) %>%
+          summarise(value = sum(value))
+        out_glo$region <- "GLO"
+        out_glo <- out_glo[,colnames(out)]
+        post_sum <- sum(out_glo[out_glo$region=="GLO",]$value)
+        if(round(pre_sum) != round(post_sum)) stop("Possible error in aggregation. Contact aggregation script author(s).")
+        out <- rbind(out,out_glo)
+      }
+    }
+
+    if (aggr_type == "mean"){
+      aggr_cols <- colnames(dfx)[!(colnames(dfx) %in% c(intersect(names(domain_vector),names(valid_domains)),
+                                                        "value","name","world"))]
+      out <- dfx %>%
+        group_by(across(all_of(aggr_cols))) %>%
+        summarise(value = mean(value))
+
+      if(level == "regglo"){
+        aggr_cols <- aggr_cols[!(aggr_cols %in% "region")]
+        out_glo <- out %>%
+          group_by(across(all_of(aggr_cols))) %>%
+          summarise(value = mean(value))
+        out_glo$region <- "GLO"
+        out_glo <- out_glo[,colnames(out)]
+        out <- rbind(out,out_glo)
+      }
+    }
   }
   return(out)
 }
