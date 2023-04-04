@@ -17,7 +17,7 @@
 #' @author Abhijeet Mishra
 
 aggregateIMPACT <- function(df = NULL,
-                            level = "reg",
+                            level = "regglo",
                             aggr_type = "sum",
                             weight = NULL){
 # ****************************************************************************

@@ -4,7 +4,7 @@
 \alias{aggregateIMPACT}
 \title{aggregateIMPACT}
 \usage{
-aggregateIMPACT(df = NULL, level = "reg", aggr_type = "sum", weight = NULL)
+aggregateIMPACT(df = NULL, level = "regglo", aggr_type = "sum", weight = NULL)
 }
 \arguments{
 \item{df}{list object from IMPACT results. Likely output of readGDX}
