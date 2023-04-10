@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/IFPRI/DOORMAT/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/IFPRI/DOORMAT/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/IFPRI/DOORMAT/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/IFPRI/DOORMAT/actions/workflows/check-standard.yaml)
 <!-- badges: end -->
 
 DOORMAT (**D**ata pr**O**cessor f**O**R i**M**p**A**c**T**) is the core
