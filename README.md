@@ -83,13 +83,17 @@ install.packages("Rcpp", dependencies=TRUE)
 
 ## Installation of `gamstransfer`
 
-GAMS Transfer is a package to maintain GAMS data outside a GAMS script
-in a programming language like R. GAMS Transfer’s main focus is the
-highly efficient transfer of data between GAMS and R, while keeping
-those operations as simple as possible for the user. In order to achieve
-this, symbol records - the actual and potentially large-scale data
-sets - are stored in native data structures of the corresponding
-programming languages (like R).
+Starting with release of GAMS 41.1.0, the standard R library for readnig
+`gdx` files in R using the package `gdxrrw` is deprecated.
+
+As `gdxrrw` is earmarked for removal in a future release, use of “GAMS
+Transfer R” is recommended. GAMS Transfer is a package to maintain GAMS
+data outside a GAMS script in a programming language like R. GAMS
+Transfer’s main focus is the highly efficient transfer of data between
+GAMS and R, while keeping those operations as simple as possible for the
+user. In order to achieve this, symbol records - the actual and
+potentially large-scale data sets - are stored in native data structures
+of the corresponding programming languages (like R).
 
 The user must download and install the latest version of GAMS in order
 to install GAMS Transfer R. GAMS Transfer R can then be installed from
@@ -134,7 +138,7 @@ Once `gasmtransfer` is installed, you can install the latest version of
 DOORMAT from [GitHub](https://github.com/) with:
 
 ``` r
-devtools::install_github("IFPRI/DOORMAT")
+devtools::install_github("IFPRI/DOORMAT", dependencies=TRUE)
 ```
 
 ## Questions / Problems
