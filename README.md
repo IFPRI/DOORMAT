@@ -37,30 +37,18 @@ website](https://cran.r-project.org/bin/windows/Rtools/)
 
 ## Setting user library
 
-(skip this part if you already have a personal R library set)
+*skip this part if you already have a personal R library set*
 
-Open a RStudio session and paste the following
+*you can check this by running `Sys.getenv("R_LIBS_USER")` in an R
+session and see if it returns a folder path*
+
+If this is not set, you can open a R session and paste the following:
 
 ``` r
 path <- Sys.getenv("R_LIBS_USER")
 if(!dir.exists(path)){
   dir.create(Sys.getenv("R_LIBS_USER"), recursive = TRUE)
 }
-```
-
-## Installing dependencies
-
-Installation of R package `gamstransfer` is required before `DOORMAT`
-can be used correctly.
-
-GAMS Transfer R (`gamstransfer`) depends on packages `R6`, `R.utils`,
-and `Rcpp`. These can be manually installed if needed by running the
-following commands in an R session:
-
-``` r
-install.packages("R6", dependencies=TRUE)
-install.packages("R.utils", dependencies=TRUE)
-install.packages("Rcpp", dependencies=TRUE)
 ```
 
 ## Installing `devtools`
@@ -76,6 +64,21 @@ install.packages("devtools", dependencies=TRUE)
 # Or the development version from GitHub:
 # install.packages("devtools")
 devtools::install_github("r-lib/devtools", dependencies=TRUE)
+```
+
+## Installing dependencies
+
+Installation of R package `gamstransfer` is required before `DOORMAT`
+can be used correctly.
+
+GAMS Transfer R (`gamstransfer`) depends on packages `R6`, `R.utils`,
+and `Rcpp`. These can be manually installed if needed by running the
+following commands in an R session:
+
+``` r
+install.packages("R6", dependencies=TRUE)
+install.packages("R.utils", dependencies=TRUE)
+install.packages("Rcpp", dependencies=TRUE)
 ```
 
 ## Installation of `gamstransfer`
