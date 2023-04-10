@@ -6,7 +6,6 @@
 #' IMPACT results.
 #' @param verbosity If additional messages should be printed about variable being read
 #'
-#' @import gamstransfer
 #' @importFrom dplyr relocate
 #' @return Parameter and domain of gdx output result queried
 #' @export
@@ -20,7 +19,7 @@
 readGDX <- function(gdx,name,use_model_name = "IMPACT", verbosity = FALSE){
   value <- model <- NULL
 
-  m = Container$new()
+  m = gamstransfer::Container$new()
   m$read(gdx, name)
 
   property_name <- names(m$data) # Conatiner pulling value is not case sensitive but it will not pull records as that is case sensitivy - the list element name is case sensitive
