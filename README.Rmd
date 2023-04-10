@@ -28,7 +28,44 @@ The goal of DOORMAT is to to be able to setup some standar functions which will 
 
 ## Installation
 
-You can install the latest version of DOORMAT from
+Installation of R package `gamstransfer` is required before DOORMAT can be used correctly.
+
+GAMS Transfer is a package to maintain GAMS data outside a GAMS script in a programming language like R. GAMS Transfer's main focus is the highly efficient transfer of data between GAMS and R, while keeping those operations as simple as possible for the user. In order to achieve this, symbol records - the actual and potentially large-scale data sets - are stored in native data structures of the corresponding programming languages (like R). 
+
+The user must download and install the latest version of GAMS in order to install GAMS Transfer R. GAMS Transfer R can then be installed from either the source package or from the binary package.
+
+The installation from the source will install `gamstransfer` and all of its dependencies.
+
+``` r
+install.packages("[PathToGAMS]/apifiles/R/gamstransfer/source/gamstransfer_r.tar.gz", dependencies=TRUE)
+```
+The users can also install gamstransfer without compiling the package source code using gamstransfer binary package. The binary packages are platform dependent and the instructions for each supported platform are shown below.
+
+On Windows
+``` r
+install.packages("[PathToGAMS]/apifiles/R/gamstransfer/binary/gamstransfer.zip", type="binary")
+```
+
+On linux
+``` r
+install.packages("[PathToGAMS]/apifiles/R/gamstransfer/binary/gamstransfer.tar.gz")
+```
+
+On macOS
+``` r
+install.packages("[PathToGAMS]/apifiles/R/gamstransfer/binary/gamstransfer.tgz", type="binary")
+```
+
+GAMS Transfer R depends on packages `R6`, `R.utils`, and `Rcpp`. These can be manually installed if needed by:
+``` r
+install.packages("R6")
+install.packages("R.utils")
+install.packages("Rcpp")
+```
+
+See documentation on [GAMS website](https://www.gams.com/latest/docs/API_R_GAMSTRANSFER.html)
+
+Once `gasmtransfer` is installed, you can install the latest version of DOORMAT from
 [GitHub](https://github.com/) with:
 
 ``` r
