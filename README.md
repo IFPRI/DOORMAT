@@ -1,18 +1,34 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# DOORMAT
+# Data Processor for IMPACT runs (DOORMAT)
 
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/IFPRI/DOORMAT/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/IFPRI/DOORMAT/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of DOORMAT is to …
+DOORMAT (**D**ata pr**O**cessor f**O**R i**M**p**A**c**T**) is the core
+R package which helps in compiling basic R functions to be able to
+analyze some standard outputs from the the International Model for
+Policy Analysis of Agricultural Commodities and Trade (IMPACT) model.
+
+The IMPACT model was developed in the early 1990s to explore the long
+term challenges facing policymakers in reducing hunger and poverty in a
+sustainable fashion. The IMPACT model has been expanded and improved
+repeatedly to respond to increasingly complex policy questions and the
+state-of-the-art of modeling. [See documentation of most recent
+update](http://www.ifpri.org/publication/international-model-policy-analysis-agricultural-commodities-and-trade-impact-model-0).
+
+The goal of DOORMAT is to to be able to setup some standar functions
+which will help in reading the outputs from a *gdx* file belonging to
+the outputs of an IMPACT run. The package also provides a `buildPackage`
+utility which helps in compiling the packages from the IMPACT
+R-universe.
 
 ## Installation
 
-You can install the development version of DOORMAT from
+You can install the latest version of DOORMAT from
 [GitHub](https://github.com/) with:
 
 ``` r
@@ -20,38 +36,7 @@ You can install the development version of DOORMAT from
 devtools::install_github("IFPRI/DOORMAT")
 ```
 
-## Example
+## Questions / Problems
 
-This is a basic example which shows you how to solve a common problem:
-
-``` r
-library(DOORMAT)
-## basic example code
-```
-
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/v1/examples>.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+In case of questions / problems please contact Abhijeet Mishra
+(<A.Mishra@cgiar.org>)
