@@ -26,10 +26,59 @@ the outputs of an IMPACT run. The package also provides a `buildPackage`
 utility which helps in compiling the packages from the IMPACT
 R-universe.
 
-## Installation
+## Installing `rtools` on windows machines
 
-Installation of R package `gamstransfer` is required before DOORMAT can
-be used correctly.
+Rtools is a toolchain bundle used for building R packages from source
+(those that need compilation of C/C++ or Fortran code) and for build R
+itself.
+
+Rtools can be downloaded from the [RTools
+website](https://cran.r-project.org/bin/windows/Rtools/)
+
+## Setting user library
+
+(skip this part if you already have a personal R library set)
+
+Open a RStudio session and paste the following
+
+``` r
+path <- Sys.getenv("R_LIBS_USER")
+if(!dir.exists(path)){
+  dir.create(Sys.getenv("R_LIBS_USER"), recursive = TRUE)
+}
+```
+
+## Installing dependencies
+
+Installation of R package `gamstransfer` is required before `DOORMAT`
+can be used correctly.
+
+GAMS Transfer R (`gamstransfer`) depends on packages `R6`, `R.utils`,
+and `Rcpp`. These can be manually installed if needed by running the
+following commands in an R session:
+
+``` r
+install.packages("R6", dependencies=TRUE)
+install.packages("R.utils", dependencies=TRUE)
+install.packages("Rcpp", dependencies=TRUE)
+```
+
+## Installing `devtools`
+
+The aim of devtools is to make package development easier by providing R
+functions that simplify and expedite common tasks. R Packages is a book
+based around this workflow.
+
+``` r
+# Install devtools from CRAN
+install.packages("devtools", dependencies=TRUE)
+
+# Or the development version from GitHub:
+# install.packages("devtools")
+devtools::install_github("r-lib/devtools", dependencies=TRUE)
+```
+
+## Installation of `gamstransfer`
 
 GAMS Transfer is a package to maintain GAMS data outside a GAMS script
 in a programming language like R. GAMS Transfer’s main focus is the
@@ -73,23 +122,15 @@ On macOS
 install.packages("[PathToGAMS]/apifiles/R/gamstransfer/binary/gamstransfer.tgz", type="binary")
 ```
 
-GAMS Transfer R depends on packages `R6`, `R.utils`, and `Rcpp`. These
-can be manually installed if needed by:
-
-``` r
-install.packages("R6")
-install.packages("R.utils")
-install.packages("Rcpp")
-```
-
 See documentation on [GAMS
 website](https://www.gams.com/latest/docs/API_R_GAMSTRANSFER.html)
+
+## Installing `DOORMAT`
 
 Once `gasmtransfer` is installed, you can install the latest version of
 DOORMAT from [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
 devtools::install_github("IFPRI/DOORMAT")
 ```
 
