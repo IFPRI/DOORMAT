@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/IFPRI/DOORMAT/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/IFPRI/DOORMAT/actions/workflows/R-CMD-check.yaml)
+[![license](https://img.shields.io/badge/Licence-GPL%20(%3E%3D%203)-red)](https://github.com/IFPRI/reportIMPACT/blob/master/LICENSE.md)
 <!-- badges: end -->
 
 DOORMAT (**D**ata pr**O**cessor f**O**R i**M**p**A**c**T**) is the core R package which helps in compiling basic R functions to be able to analyze some standard outputs from the the International Model for Policy Analysis of Agricultural Commodities and Trade (IMPACT) model.
