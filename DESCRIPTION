@@ -9,7 +9,7 @@ Maintainer@R: Authors@R:
     person("Abhijeet", "Mishra",  , "A.Mishra@cgiar.org", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-8287-9922"))
 Description: Data processor for IMPACT model.
-License: MIT + file LICENSE
+License: GPL (>= 3)
 Encoding: UTF-8
 RoxygenNote: 7.2.3
 Imports: 
@@ -22,3 +22,4 @@ Imports:
     dplyr (>= 1.1.1)
 Suggests:
     gamstransfer (>= 1.6)
+VignetteBuilder: knitr
