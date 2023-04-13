@@ -42,7 +42,7 @@ buildPackage <- function(lib = ".", quiet = FALSE){
     user_promt <- menu(c("Yes", "No"), title="Would you like to install this package on your computer?")
     if(user_promt==1) {
       use_version()
-      pkg_install(pkg=lib)
+      pkg_install(pkg=lib,ask=FALSE)
       }
   }
 }
