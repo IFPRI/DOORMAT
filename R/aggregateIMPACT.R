@@ -41,6 +41,9 @@ aggregateIMPACT <- function(df = NULL,
     dfx  <- df[["data"]]
     for(name in names(map_list)){
       map_dummy <- as.data.frame(map_list[[name]])
+      if(!("GLO" %in% map_dummy$cty)){
+        map_dummy[nrow(map_dummy) + 1,] <- rep("GLO",ncol(map_dummy))
+      }
       colnames(map_dummy)[1] <- name
       temp <- merge(dfx, map_dummy, by = name)
       if (nrow(temp) != nrow(dfx)) warning(
@@ -60,6 +63,10 @@ aggregateIMPACT <- function(df = NULL,
 
       if(level == "regglo"){
         aggr_cols <- aggr_cols[!(aggr_cols %in% "region")]
+        if(nrow(out[out$region!="GLO",]) == 0) {
+          return(out)
+          stop()
+        }
         pre_sum <- sum(out[out$region!="GLO",]$value)
         out_glo <- out %>%
           group_by(across(all_of(aggr_cols))) %>%
@@ -81,6 +88,10 @@ aggregateIMPACT <- function(df = NULL,
 
       if(level == "regglo"){
         aggr_cols <- aggr_cols[!(aggr_cols %in% "region")]
+        if(nrow(out[out$region!="GLO",]) == 0) {
+          return(out)
+          stop()
+        }
         out_glo <- out %>%
           group_by(across(all_of(aggr_cols))) %>%
           summarise(value = mean(value,na.rm = TRUE))
