@@ -20,10 +20,10 @@ aggregateIMPACT <- function(df = NULL,
                             level = "regglo",
                             aggr_type = "sum",
                             weight = NULL){
-# ****************************************************************************
-# Visible binding for global variable fix
+  # ****************************************************************************
+  # Visible binding for global variable fix
   region <- yrs <- groups <- long_name <- parameter <- model <- value <- dfx <- NULL
-# ****************************************************************************
+  # ****************************************************************************
 
   if (is.null(df)) stop("No dataframe passed to the function. Stopping.")
   if (level %in% c("reg","regglo")) {
@@ -54,7 +54,7 @@ aggregateIMPACT <- function(df = NULL,
       pre_sum <- sum(dfx$value)
       out <- dfx %>%
         group_by(across(all_of(aggr_cols))) %>%
-        summarise(value = sum(value))
+        summarise(value = sum(value,na.rm = TRUE))
       post_sum <- sum(out$value)
       if(round(pre_sum) != round(post_sum)) stop("Possible error in aggregation. Contact aggregation script author(s).")
 
@@ -63,7 +63,7 @@ aggregateIMPACT <- function(df = NULL,
         pre_sum <- sum(out[out$region!="GLO",]$value)
         out_glo <- out %>%
           group_by(across(all_of(aggr_cols))) %>%
-          summarise(value = sum(value))
+          summarise(value = sum(value,na.rm = TRUE))
         out_glo$region <- "GLO"
         out_glo <- out_glo[,colnames(out)]
         post_sum <- sum(out_glo[out_glo$region=="GLO",]$value)
@@ -83,7 +83,7 @@ aggregateIMPACT <- function(df = NULL,
         aggr_cols <- aggr_cols[!(aggr_cols %in% "region")]
         out_glo <- out %>%
           group_by(across(all_of(aggr_cols))) %>%
-          summarise(value = mean(value))
+          summarise(value = mean(value,na.rm = TRUE))
         out_glo$region <- "GLO"
         out_glo <- out_glo[,colnames(out)]
         out <- rbind(out,out_glo)
