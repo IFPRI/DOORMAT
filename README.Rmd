@@ -32,20 +32,32 @@ Rtools is a toolchain bundle used for building R packages from source (those tha
 
 Rtools can be downloaded from the [RTools website](https://cran.r-project.org/bin/windows/Rtools/)
 
+Usually, Rtools also needs to be added to the `Environment Variables` in windows machines. This is automatically done once you successfully install Rtools.
+
 ## Setting user library
 
 _skip this part if you already have a personal R library set_
 
-_you can check this by running `Sys.getenv("R_LIBS_USER")` in an R session and see if it returns a folder path_
+_you can check this by running `Sys.getenv("R_LIBS_USER")` in an R session and see if it returns a folder path you have setup as your library._
 
-If this is not set, you can open a R session and paste the following:
+Sometimes, `Sys.getenv("R_LIBS_USER")` points to an `appdata` folder on windows machines. It can cause some editing privileges to be removed from inside an R environment. To make sure that packages can be successfully installed, we can manually create a folder to hold personal R libraries.
+
+To do so, you can open a R session and paste the following:
 
 ``` r
-path <- Sys.getenv("R_LIBS_USER")
+path <- "C:/Rpackages"
 if(!dir.exists(path)){
   dir.create(Sys.getenv("R_LIBS_USER"), recursive = TRUE)
 }
 ```
+
+## Adding `GAMS` as `PATH` environment variable
+
+See https://www.gams.com/latest/docs/UG_WIN_INSTALL.html
+
+> When installing a fresh copy of GAMS or updating GAMS, you have two options to run the installer: In default or advanced mode. In the default mode, the installer will prompt you for the name of the directory in which to install GAMS. You may accept the default choice or pick another directory. Please remember: if you want to install two different versions of GAMS, they must be in separate directories.
+
+> If you choose to use the advanced mode, the installer will also ask you for a name of a start menu folder, if GAMS should be installed for all users, if the GAMS directory should be added to the PATH environment variable and which desktop icons should be created.
 
 ## Installing `devtools`
 
@@ -58,6 +70,28 @@ install.packages("devtools", dependencies=TRUE)
 # Or the development version from GitHub:
 # install.packages("devtools")
 devtools::install_github("r-lib/devtools", dependencies=TRUE)
+
+```
+
+## Additional repository
+
+For installation of the most recent package version of `magclass` an additional repository has to be added in R:
+
+``` r
+options(repos = c(CRAN = "@CRAN@", pik = "https://rse.pik-potsdam.de/r/packages"))
+
+```
+
+## Installing `magclass`
+
+`magclass` package can be installed from the `pik-piam` universe of packages.
+This package is also distributed via CRAN but is not as frequently updated.
+Installation of this package can be easily achieved via:
+
+``` r
+# Development version from GitHub:
+# install.packages("devtools")
+devtools::install_github("pik-piam/magclass", dependencies=TRUE)
 
 ```
 
@@ -74,7 +108,7 @@ install.packages("Rcpp", dependencies=TRUE)
 
 ## Installation of `gamstransfer`
 
-Starting with release of GAMS 41.1.0, the standard R library for readnig `gdx` files in R using the package `gdxrrw` is deprecated.
+Starting with release of GAMS 41.1.0, the standard R library for reading `gdx` files in R using the package `gdxrrw` is deprecated.
 
 As `gdxrrw` is earmarked for removal in a future release, use of "GAMS Transfer R" is recommended. GAMS Transfer is a package to maintain GAMS data outside a GAMS script in a programming language like R. GAMS Transfer's main focus is the highly efficient transfer of data between GAMS and R, while keeping those operations as simple as possible for the user. In order to achieve this, symbol records - the actual and potentially large-scale data sets - are stored in native data structures of the corresponding programming languages (like R). 
 

@@ -19,21 +19,21 @@
 aggregateIMPACT <- function(df = NULL,
                             level = "regglo",
                             aggr_type = "sum",
-                            weight = NULL){
+                            weight = NULL) {
   # ****************************************************************************
   # Visible binding for global variable fix
-  region <- yrs <- groups <- long_name <- parameter <- model <- value <- dfx <- NULL
+  region <-
+    yrs <-
+    groups <-
+    long_name <- parameter <- model <- value <- dfx <- NULL
   # ****************************************************************************
 
   if (is.null(df)) stop("No dataframe passed to the function. Stopping.")
-  if (level %in% c("reg","regglo")) {
+  if (level %in% c("reg", "regglo")) {
     domain_vector <- sapply(df[["domains"]],
-                            tool_get_domain_mapping,USE.NAMES = T)
-    valid_domains <- domain_vector[lapply(domain_vector,length)>0]
-    #valid_domains <- domain_vector
-    # map_list <- mapply(tool_get_mapping,
-    #                    sheet = valid_domains,
-    #                    USE.NAMES = TRUE) # Unlist kicks out empty list element
+                            tool_get_domain_mapping, USE.NAMES = T)
+    valid_domains <- domain_vector[lapply(domain_vector, length) > 0]
+
     map_list <- list()
     for(domain_names in names(valid_domains)){
       map_list[[domain_names]] <- tool_get_mapping(sheet = valid_domains[[domain_names]])
