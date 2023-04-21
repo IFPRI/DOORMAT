@@ -3,6 +3,7 @@
 #' @param lib Path to library
 #' @param quiet If CMD check output is sent to terminal. Set to TRUE if
 #' additional info is not needed
+#' @param ignore_lintr If lintr should be ignored for readability
 #'
 #' @importFrom devtools check document
 #' @importFrom pak pkg_install
@@ -18,13 +19,15 @@
 #' }
 #' @author Abhijeet Mishra
 
-buildPackage <- function(lib = ".", quiet = FALSE) {
+buildPackage <- function(lib = ".", quiet = FALSE, ignore_lintr = FALSE) {
   cat("Running lintr ....\n")
-  lintr_out <- lintr::lint_package(path = lib)
-  if (length(lintr_out) > 0) {
-    cat("Run lintr::lint_package('.') to see lintr warnings.\n")
-    stop("Please fix lintr issues before proceeding with package build.")
+  if(ignore_lintr){
+    lintr_out <- lintr::lint_package(path = lib)
+    if (length(lintr_out) > 0) {
+      cat("Run lintr::lint_package('.') to see lintr warnings.\n")
+      stop("Please fix lintr issues before proceeding with package build.")
     }
+  }
   cat("Updating NAMESPACE and DESCRIPTION\n")
   update_namespace_description(pkg = lib)
   cat("Building package\n")
