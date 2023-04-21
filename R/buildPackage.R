@@ -21,7 +21,7 @@
 buildPackage <- function(lib = ".", quiet = FALSE) {
   cat("Running lintr ....\n")
   lintr_out <- lintr::lint_package(path = lib)
-  if(length(lintr_out)>0) {
+  if (length(lintr_out) > 0) {
     cat("Run lintr::lint_package('.') to see lintr warnings.\n")
     stop("Please fix lintr issues before proceeding with package build.")
     }
