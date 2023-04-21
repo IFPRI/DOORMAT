@@ -15,11 +15,13 @@
 
 tool_get_domain_mapping <- function(domain = NULL,
                              file = "mapping_items.xlsx") {
-  sheet = "domain_pointer"
+  sheet <- "domain_pointer"
   fpath <- system.file("extdata", file, package = "DOORMAT")
   mapping <- read_xlsx(path = fpath,
                        sheet = sheet)
   sheet <- mapping$Sheet[mapping$Domain == domain]
-  if(is_empty(sheet) && !(domain %in% c('lvsys','h','fctr','lnd'))) stop("'",domain, "' not found in mapping")
+  if (is_empty(sheet) &&
+      !(domain %in% c("lvsys", "h", "fctr", "lnd"))
+      ) stop("'", domain, "' not found in mapping")
   return(sheet)
 }

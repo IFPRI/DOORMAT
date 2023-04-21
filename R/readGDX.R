@@ -4,7 +4,8 @@
 #' @param name name of the parameter being read
 #' @param use_model_name Which model name should be shown. Use "IMPACT" for
 #' IMPACT results.
-#' @param verbosity If additional messages should be printed about variable being read
+#' @param verbosity If additional messages should be printed about variable
+#' being read
 #'
 #' @importFrom dplyr relocate
 #' @return Parameter and domain of gdx output result queried
@@ -16,13 +17,16 @@
 #' }
 #' @author Abhijeet Mishra
 
-readGDX <- function(gdx,name,use_model_name = "IMPACT", verbosity = FALSE){
+readGDX <- function(gdx, name, use_model_name = "IMPACT", verbosity = FALSE) {
   value <- model <- NULL
 
-  m = gamstransfer::Container$new()
+  m <- gamstransfer::Container$new()
   m$read(gdx, name)
 
-  property_name <- names(m$data) # Conatiner pulling value is not case sensitive but it will not pull records as that is case sensitivy - the list element name is case sensitive
+  # Container pulling value is not case sensitive but it will not pull records
+  # as that is case sensitive - the list element name is case sensitive
+
+  property_name <- names(m$data)
 
   df <- m$data[[property_name]]$records
 
@@ -31,12 +35,12 @@ readGDX <- function(gdx,name,use_model_name = "IMPACT", verbosity = FALSE){
   df$description <- m$data[[property_name]]$description
 
   domains <- m$data[[property_name]]$domain
-  domains <- tolower(domains[!(domains %in% c("YRS","yrs"))])
+  domains <- tolower(domains[!(domains %in% c("YRS", "yrs"))])
 
   df$model <- use_model_name
 
   df <- df %>% relocate(value, .after = model)
-  if(verbosity) message("Reading '", name, "' from\n",gdx)
+  if (verbosity) message("Reading '", name, "' from\n", gdx)
   out_list <- list()
   out_list[["data"]] <- df
   out_list[["domains"]] <- domains

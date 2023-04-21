@@ -46,7 +46,7 @@ To do so, you can open a R session and paste the following:
 
 ``` r
 path <- "C:/Rpackages"
-if(!dir.exists(path)){
+if (!dir.exists(path)) {
   dir.create(Sys.getenv("R_LIBS_USER"), recursive = TRUE)
 }
 ```

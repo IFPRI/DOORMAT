@@ -9,6 +9,7 @@
 #' @importFrom utils menu
 #' @importFrom rlang is_empty
 #' @importFrom usethis use_version
+#' @importFrom lintr lint_package
 #' @return NULL
 #' @export
 #' @examples
@@ -17,7 +18,13 @@
 #' }
 #' @author Abhijeet Mishra
 
-buildPackage <- function(lib = ".", quiet = FALSE){
+buildPackage <- function(lib = ".", quiet = FALSE) {
+  cat("Running lintr ....\n")
+  lintr_out <- lintr::lint_package(path = lib)
+  if(length(lintr_out)>0) {
+    cat("Run lintr::lint_package('.') to see lintr warnings.\n")
+    stop("Please fix lintr issues before proceeding with package build.")
+    }
   cat("Updating NAMESPACE and DESCRIPTION\n")
   update_namespace_description(pkg = lib)
   cat("Building package\n")
@@ -32,17 +39,19 @@ buildPackage <- function(lib = ".", quiet = FALSE){
 
   check_flag <- any(errors, warns, notes)
 
-  if (check_flag){
-    cat(check_package$errors,"\n")
-    cat(check_package$warnings,"\n")
-    cat(check_package$notes,"\n")
-    stop("Building package failed and cannot proceed without fixing above Error(s)/Warning(s)/Note(s)")
-  } else if(!check_flag){
+  if (check_flag) {
+    cat(check_package$errors, "\n")
+    cat(check_package$warnings, "\n")
+    cat(check_package$notes, "\n")
+    stop("Build package failed, please fix above Error(s)/Warning(s)/Note(s)")
+  } else if (!check_flag) {
     cat("Package check successful\n")
-    user_promt <- menu(c("Yes", "No"), title="Would you like to install this package on your computer?")
-    if(user_promt==1) {
+    user_promt <-
+      menu(c("Yes", "No"),
+           title = "Would you like to install this package on your computer?")
+    if (user_promt == 1) {
       use_version()
-      pkg_install(pkg=lib,ask=FALSE)
+      pkg_install(pkg = lib, ask = FALSE)
       }
   }
 }

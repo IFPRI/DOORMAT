@@ -40,23 +40,18 @@ tool_get_mapping <- function(type = NULL,
                          range = range_vector,
                          .name_repair = "unique_quiet")
 
-    # message("Returning Standard IMPACT regions. Other available options:\n",
-    #         paste(
-    #           colnames(mapping)[-c(1,length(colnames(mapping)))],
-    #           collapse = ", "),"\n",
-    #         "This can be changed by setting sp_mapping.")
-    mapping <- mapping[,c("Cty",
+    mapping <- mapping[, c("Cty",
                           "LongName",
                           "Standard-IMPACT_glo",
                           sp_mapping)]
-    colnames(mapping) <- c("Country","Name","World","Region")
+    colnames(mapping) <- c("Country", "Name", "World", "Region")
     } else if (sheet == "Aggregation Crops") {
       range_vector <- "A8:G150"
       mapping <- read_xlsx(path = fpath,
                            sheet = sheet,
                            range = range_vector,
                            .name_repair = "unique_quiet")
-      mapping <- mapping[,c("Commodities",
+      mapping <- mapping[, c("Commodities",
                             "Groups",
                             "Long Name")]
     } else if (sheet == "param_naming") {
@@ -66,7 +61,7 @@ tool_get_mapping <- function(type = NULL,
                            sheet = sheet,
                            range = range_vector,
                            .name_repair = "unique_quiet")
-      mapping <- mapping[,c("Parameter",
+      mapping <- mapping[, c("Parameter",
                             "Description")]
     }
 

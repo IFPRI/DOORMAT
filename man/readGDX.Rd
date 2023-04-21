@@ -14,7 +14,8 @@ readGDX(gdx, name, use_model_name = "IMPACT", verbosity = FALSE)
 \item{use_model_name}{Which model name should be shown. Use "IMPACT" for
 IMPACT results.}
 
-\item{verbosity}{If additional messages should be printed about variable being read}
+\item{verbosity}{If additional messages should be printed about variable
+being read}
 }
 \value{
 Parameter and domain of gdx output result queried
