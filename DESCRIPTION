@@ -4,7 +4,7 @@ Title: Data processor for IMPACT model (Data prOcessor fOR iMpAcT)
 Version: 2.9.0
 Authors@R: 
   c(person(given = "Abhijeet",
-           family = "Pebesma",
+           family = "Mishra",
            role = c("aut", "cre"),
            email = "A.Mishra@cgiar.org",
            comment = c(ORCID = "0000-0002-8287-9922")))
