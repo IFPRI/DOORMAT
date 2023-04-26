@@ -26,7 +26,7 @@ readGDX <- function(gdx, name, use_model_name = "IMPACT", verbosity = FALSE) {
 
   m <- gamstransfer::Container$new()
 
-  if(gt_rev <= 1.12){
+  if(gt_rev < 1.12){
     m$read(gdx, name)
 
     # Container pulling value is not case sensitive but it will not pull records
