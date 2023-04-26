@@ -1,7 +1,7 @@
 Package: DOORMAT
 Type: Package
 Title: Data processor for IMPACT model (Data prOcessor fOR iMpAcT)
-Version: 2.9.0
+Version: 3.0.0
 Authors@R: c(
     person("Abhijeet", "Mishra", , "A.Mishra@cgiar.org", role = c("aut", "cre"))
     )
@@ -19,4 +19,4 @@ Imports:
     dplyr (>= 1.1.1),
     lintr (>= 3.0.2)
 Suggests:
-    gamstransfer (>= 1.6)
+    gamstransfer (>= 1.12)
