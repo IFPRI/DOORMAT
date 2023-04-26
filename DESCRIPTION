@@ -4,6 +4,7 @@ Title: Data processor for IMPACT model (Data prOcessor fOR iMpAcT)
 Version: 2.9.0
 Authors@R: c(
     person("Abhijeet", "Mishra", , "A.Mishra@cgiar.org", role = c("aut", "cre"))
+    )
 Description: Data processor for IMPACT model.
 License: GPL (>= 3)
 Encoding: UTF-8
