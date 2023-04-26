@@ -20,21 +20,32 @@
 readGDX <- function(gdx, name, use_model_name = "IMPACT", verbosity = FALSE) {
   value <- model <- NULL
 
+  # Grab gamstransfer version
+  gt_rev <- as.numeric(packageDescription("gamstransfer")$Version)
+
   m <- gamstransfer::Container$new()
-  m$read(gdx, name)
 
-  # Container pulling value is not case sensitive but it will not pull records
-  # as that is case sensitive - the list element name is case sensitive
+  if(gt_rev <= 1.12){
+    m$read(gdx, name)
 
-  property_name <- names(m$data)
+    # Container pulling value is not case sensitive but it will not pull records
+    # as that is case sensitive - the list element name is case sensitive
 
-  df <- m$data[[property_name]]$records
+    property_name <- names(m$data)
+    df <- m$data[[property_name]]$records
+    colnames(df) <- tolower(c(m$data[[property_name]]$domain, "value"))
+    df$description <- m$data[[property_name]]$description
+    domains <- m$data[[property_name]]$domain
 
-  colnames(df) <- tolower(c(m$data[[property_name]]$domain, "value"))
+  } else {
+    m$read(gdx, name, records = TRUE)
+    property_name = m$listSymbols()
+    df <- m[property_name]$records
+    colnames(df) <- tolower(c(m$data[[property_name]]$domain, "value"))
+    df$description <- m$data[[property_name]]$description
+    domains <- m$data[[property_name]]$domain
+  }
 
-  df$description <- m$data[[property_name]]$description
-
-  domains <- m$data[[property_name]]$domain
   domains <- tolower(domains[!(domains %in% c("YRS", "yrs"))])
 
   df$model <- use_model_name
