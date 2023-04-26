@@ -41,9 +41,9 @@ readGDX <- function(gdx, name, use_model_name = "IMPACT", verbosity = FALSE) {
     m$read(gdx, name, records = TRUE)
     property_name = m$listSymbols()
     df <- m[property_name]$records
-    colnames(df) <- tolower(c(m$data[[property_name]]$domain, "value"))
-    df$description <- m$data[[property_name]]$description
-    domains <- m$data[[property_name]]$domain
+    colnames(df) <- tolower(c(m[property_name]$domain, "value"))
+    df$description <- m[property_name]$description
+    domains <- m[property_name]$domain
   }
 
   domains <- tolower(domains[!(domains %in% c("YRS", "yrs"))])
