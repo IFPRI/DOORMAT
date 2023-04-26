@@ -8,6 +8,7 @@
 #' being read
 #'
 #' @importFrom dplyr relocate
+#' @importFrom utils packageDescription
 #' @return Parameter and domain of gdx output result queried
 #' @export
 #'
