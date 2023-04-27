@@ -22,4 +22,6 @@ Imports:
 Suggests:
     gamstransfer (>= 1.12),
     DOORMAT (>= 3.1.0)
+Remotes:
+    github::eddelbuettel/drat
 Additional_repositories: https://ifpri.github.io/drat
