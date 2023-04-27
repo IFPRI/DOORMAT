@@ -20,3 +20,5 @@ Imports:
     lintr (>= 3.0.2)
 Suggests:
     gamstransfer (>= 1.12)
+    DOORMAT
+Additional_repositories: https://ifpri.github.io/drat
