@@ -17,8 +17,9 @@ Imports:
     usethis (>= 2.1.6),
     readxl (>= 1.4.2),
     dplyr (>= 1.1.1),
-    lintr (>= 3.0.2)
+    lintr (>= 3.0.2),
+    drat (>= 0.2.3.1)
 Suggests:
-    gamstransfer (>= 1.12)
-    DOORMAT
+    gamstransfer (>= 1.12),
+    DOORMAT (>= 3.1.0)
 Additional_repositories: https://ifpri.github.io/drat
