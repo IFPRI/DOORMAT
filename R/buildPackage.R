@@ -57,4 +57,7 @@ buildPackage <- function(lib = ".", quiet = FALSE, ignore_lintr = FALSE) {
       pkg_install(pkg = lib, ask = FALSE)
       }
   }
+
+  message("Preparing package for drat update\n")
+  drat_source_build(lib = lib)
 }
