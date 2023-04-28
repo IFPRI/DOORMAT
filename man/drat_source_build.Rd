@@ -2,7 +2,7 @@
 % Please edit documentation in R/drat_source_build.R
 \name{drat_source_build}
 \alias{drat_source_build}
-\title{Build package utility}
+\title{Build package utility for DRAT linkage of IFPRI R packages}
 \usage{
 drat_source_build(lib = ".")
 }
@@ -10,7 +10,7 @@ drat_source_build(lib = ".")
 \item{lib}{Path to library}
 }
 \description{
-Build package utility
+Build package utility for DRAT linkage of IFPRI R packages
 }
 \examples{
 \dontrun{

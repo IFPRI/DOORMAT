@@ -2,7 +2,7 @@
 % Please edit documentation in R/tool_get_domain_mapping.R
 \name{tool_get_domain_mapping}
 \alias{tool_get_domain_mapping}
-\title{tool_get_domain_mapping}
+\title{Function which pulls the domain list}
 \usage{
 tool_get_domain_mapping(domain = NULL, file = "mapping_items.xlsx")
 }
@@ -15,7 +15,7 @@ tool_get_domain_mapping(domain = NULL, file = "mapping_items.xlsx")
 Mapping object for IMPACT framework
 }
 \description{
-tool_get_domain_mapping
+Function which pulls the domain list
 }
 \examples{
 \dontrun{

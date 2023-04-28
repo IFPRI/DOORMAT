@@ -2,7 +2,7 @@
 % Please edit documentation in R/readGDX.R
 \name{readGDX}
 \alias{readGDX}
-\title{readGDX}
+\title{R utility package for reading objects from a GDX file.}
 \usage{
 readGDX(gdx, name, use_model_name = "IMPACT", verbosity = FALSE)
 }
@@ -21,7 +21,7 @@ being read}
 Parameter and domain of gdx output result queried
 }
 \description{
-readGDX
+R utility package for reading objects from a GDX file.
 }
 \examples{
 \dontrun{

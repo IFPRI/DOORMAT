@@ -1,4 +1,4 @@
-#' update_namespace_description
+#' Simple update for latest dependencies
 #'
 #' @param pkg Package directory
 #'

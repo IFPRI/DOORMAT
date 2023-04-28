@@ -11,17 +11,17 @@ Encoding: UTF-8
 RoxygenNote: 7.2.3
 Imports: 
     devtools (>= 2.4.5),
-    pak (>= 0.4.0),
+    pak (>= 0.5.1),
     utils,
     rlang (>= 1.1.0),
     usethis (>= 2.1.6),
     readxl (>= 1.4.2),
-    dplyr (>= 1.1.1),
+    dplyr (>= 1.1.2),
     lintr (>= 3.0.2),
     drat (>= 0.2.3.1)
 Suggests:
     gamstransfer (>= 1.12),
-    DOORMAT (>= 3.1.0)
+    DOORMAT (>= 3.2.0)
 Remotes:
     github::eddelbuettel/drat
 Additional_repositories: https://ifpri.github.io/drat

@@ -1,4 +1,4 @@
-#' Build package utility
+#' Build package utility for DRAT linkage of IFPRI R packages
 #'
 #' @param lib Path to library
 #' @return NULL

@@ -1,4 +1,4 @@
-#' readGDX
+#' R utility package for reading objects from a GDX file.
 #'
 #' @param gdx Path to the gdx file
 #' @param name name of the parameter being read

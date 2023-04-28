@@ -2,7 +2,7 @@
 % Please edit documentation in R/update_namespace_description.R
 \name{update_namespace_description}
 \alias{update_namespace_description}
-\title{update_namespace_description}
+\title{Simple update for latest dependencies}
 \usage{
 update_namespace_description(pkg = ".")
 }
@@ -10,7 +10,7 @@ update_namespace_description(pkg = ".")
 \item{pkg}{Package directory}
 }
 \description{
-update_namespace_description
+Simple update for latest dependencies
 }
 \examples{
 \dontrun{

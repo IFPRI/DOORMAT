@@ -1,14 +1,12 @@
-#' aggregateIMPACT
+#' Function to aggregate IMPACT results at a specified level
 #'
-#' @param df list object from IMPACT results. Likely output of readGDX
-#' @param level "reg" Short for regional. "regglo" fore regional+global
+#' @param df Specific IMPACT results as a list object. Likely output of readGDX
+#' @param level "reg" Short for regional. "regglo" for regional+global
 #' result being passed on to this function
 #' @param aggr_type sum or mean
-#' @param weight Weight by which aggregation can be made
 #'
 #' @return Country or FPU level aggregation of IMPACT results
 #' @importFrom dplyr group_by summarise %>% across all_of
-#' @importFrom rlang .data
 #' @export
 #' @examples
 #' \dontrun{
@@ -18,8 +16,7 @@
 
 aggregateIMPACT <- function(df = NULL,
                             level = "regglo",
-                            aggr_type = "sum",
-                            weight = NULL) {
+                            aggr_type = "sum") {
   # ****************************************************************************
   # Visible binding for global variable fix
   value <- dfx <- NULL

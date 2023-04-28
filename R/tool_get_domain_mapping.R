@@ -1,4 +1,4 @@
-#' tool_get_domain_mapping
+#' Function which pulls the domain list
 #'
 #' @param domain set
 #' @param file Mapping file

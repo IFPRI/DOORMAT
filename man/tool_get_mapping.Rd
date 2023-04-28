@@ -2,7 +2,7 @@
 % Please edit documentation in R/tool_get_mapping.R
 \name{tool_get_mapping}
 \alias{tool_get_mapping}
-\title{tool_get_mapping}
+\title{Function for getting correct mapping of IFPRI regions (CTY to regions)}
 \usage{
 tool_get_mapping(
   type = NULL,
@@ -26,7 +26,7 @@ tool_get_domain_mapping function}
 Mapping object for IMPACT framework
 }
 \description{
-tool_get_mapping
+Function for getting correct mapping of IFPRI regions (CTY to regions)
 }
 \examples{
 \dontrun{

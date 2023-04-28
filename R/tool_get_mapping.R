@@ -1,4 +1,4 @@
-#' tool_get_mapping
+#' Function for getting correct mapping of IFPRI regions (CTY to regions)
 #'
 #' @param type Defaults to "cty" for country mapping. Choose "fpu" for
 #' IMPACT FPU mapping.

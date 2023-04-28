@@ -2,25 +2,23 @@
 % Please edit documentation in R/aggregateIMPACT.R
 \name{aggregateIMPACT}
 \alias{aggregateIMPACT}
-\title{aggregateIMPACT}
+\title{Function to aggregate IMPACT results at a specified level}
 \usage{
-aggregateIMPACT(df = NULL, level = "regglo", aggr_type = "sum", weight = NULL)
+aggregateIMPACT(df = NULL, level = "regglo", aggr_type = "sum")
 }
 \arguments{
-\item{df}{list object from IMPACT results. Likely output of readGDX}
+\item{df}{Specific IMPACT results as a list object. Likely output of readGDX}
 
-\item{level}{"reg" Short for regional. "regglo" fore regional+global
+\item{level}{"reg" Short for regional. "regglo" for regional+global
 result being passed on to this function}
 
 \item{aggr_type}{sum or mean}
-
-\item{weight}{Weight by which aggregation can be made}
 }
 \value{
 Country or FPU level aggregation of IMPACT results
 }
 \description{
-aggregateIMPACT
+Function to aggregate IMPACT results at a specified level
 }
 \examples{
 \dontrun{
