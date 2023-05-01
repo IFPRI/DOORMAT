@@ -73,7 +73,9 @@ To do so, you can open a R session and paste the following:
 ``` r
 path <- "C:/Rpackages"
 if (!dir.exists(path)) {
-  dir.create(Sys.getenv("R_LIBS_USER"), recursive = TRUE)
+  dir.create(path, recursive = TRUE)
+  Sys.setenv(R_LIBS_USER = path)
+  if(Sys.getenv("R_LIBS_USER") == path) cat("Personal library set to ---- ", path)
 }
 ```
 
@@ -115,7 +117,9 @@ packages, `magclass` (for array based operations), additional
 repositories have to be added in R:
 
 ``` r
-options(repos = c(CRAN="https://cloud.r-project.org/", PIK="https://rse.pik-potsdam.de/r/packages", KIRAN="https://ifpri.r-universe.dev"))
+options(repos = c(CRAN  = "https://cloud.r-project.org/",
+                  PIK   = "https://rse.pik-potsdam.de/r/packages", 
+                  KIRAN = "https://ifpri.r-universe.dev"))
 ```
 
 Here,
