@@ -18,10 +18,11 @@ Imports:
     readxl (>= 1.4.2),
     dplyr (>= 1.1.2),
     lintr (>= 3.0.2),
-    drat (>= 0.2.3.1)
+    drat (>= 0.2.3.1),
+    git2r (>= 0.32.0)
 Suggests:
     gamstransfer (>= 1.12),
-    DOORMAT (>= 3.3.0)
+    DOORMAT (>= 3.4.0)
 Remotes:
     github::eddelbuettel/drat
 Additional_repositories: https://ifpri.github.io/drat

@@ -3,6 +3,7 @@
 #' @param lib Path to library
 #' @return NULL
 #' @importFrom drat insertPackage
+#' @importFrom git2r add commit
 #' @export
 #' @examples
 #' \dontrun{
@@ -22,5 +23,12 @@ drat_source_build <- function(lib = ".") {
   message("Cleanup .....")
   file.remove(tgz_path)
 
+  keep_path <- getwd()
+
   message("Finding drat directory .....")
+  new_path <- "../drat/"
+  setwd(new_path)
+  git2r::add(path = ".")
+  git2r::commit(all = TRUE, message = paste0("DRAT update", tgz_path))
+  setwd(keep_path)
 }
