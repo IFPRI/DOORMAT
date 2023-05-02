@@ -4,7 +4,13 @@
 \alias{aggregateIMPACT}
 \title{Function to aggregate IMPACT results at a specified level}
 \usage{
-aggregateIMPACT(df = NULL, level = "regglo", aggr_type = "sum")
+aggregateIMPACT(
+  df = NULL,
+  level = "regglo",
+  aggr_type = "sum",
+  sp_mapping = "Standard-IMPACT_dis1",
+  keep_cty = FALSE
+)
 }
 \arguments{
 \item{df}{Specific IMPACT results as a list object. Likely output of readGDX}
@@ -13,6 +19,11 @@ aggregateIMPACT(df = NULL, level = "regglo", aggr_type = "sum")
 result being passed on to this function}
 
 \item{aggr_type}{sum or mean}
+
+\item{sp_mapping}{Column from Aggregation Regions sheet}
+
+\item{keep_cty}{Overwriting flag for regional aggregation. If set to TRUE,
+provides only country level data.}
 }
 \value{
 Country or FPU level aggregation of IMPACT results

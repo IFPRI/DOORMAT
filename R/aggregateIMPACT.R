@@ -4,6 +4,9 @@
 #' @param level "reg" Short for regional. "regglo" for regional+global
 #' result being passed on to this function
 #' @param aggr_type sum or mean
+#' @param sp_mapping Column from Aggregation Regions sheet
+#' @param keep_cty Overwriting flag for regional aggregation. If set to TRUE,
+#' provides only country level data.
 #'
 #' @return Country or FPU level aggregation of IMPACT results
 #' @importFrom dplyr group_by summarise %>% across all_of
@@ -16,7 +19,9 @@
 
 aggregateIMPACT <- function(df = NULL,
                             level = "regglo",
-                            aggr_type = "sum") {
+                            aggr_type = "sum",
+                            sp_mapping = "Standard-IMPACT_dis1",
+                            keep_cty = FALSE) {
   # ****************************************************************************
   # Visible binding for global variable fix
   value <- dfx <- NULL
@@ -33,7 +38,12 @@ aggregateIMPACT <- function(df = NULL,
   map_list <- list()
   for (domain_names in names(valid_domains)) {
     map_list[[domain_names]] <- tool_get_mapping(
-      sheet = valid_domains[[domain_names]])
+      sheet = valid_domains[[domain_names]],
+      sp_mapping = sp_mapping)
+  }
+
+  if (keep_cty & "cty" %in% names(map_list)) {
+    map_list$cty$region = map_list$cty$country
   }
 
   dfx  <- df[["data"]]
