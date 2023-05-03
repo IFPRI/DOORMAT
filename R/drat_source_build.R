@@ -25,10 +25,14 @@ drat_source_build <- function(lib = ".") {
 
   keep_path <- getwd()
 
-  message("Finding drat directory .....")
+  message("Temporarliy moving to drat directory .....")
   new_path <- "../drat/"
   setwd(new_path)
-  git2r::add(path = ".")
-  git2r::commit(all = TRUE, message = paste0("DRAT update", tgz_path))
+  add(path = ".")
+  commit(all = TRUE, message = paste0("DRAT update", tgz_path))
+  # Use new key formats - only for DRAT
+  # https://stackoverflow.com/a/62278407
+  # git config --add --local core.sshCommand 'ssh -i <<<PATH_TO_SSH_KEY>>>'
+  # push(object = ".")
   setwd(keep_path)
 }
