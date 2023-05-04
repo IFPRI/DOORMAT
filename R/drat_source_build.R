@@ -19,7 +19,7 @@ drat_source_build <- function(lib = ".") {
   source_file <- grep(pattern = ".tar.gz", x = dir(path = "."), value = TRUE)
   tgz_path <- paste0("./", source_file)
   message("drat magic .....")
-  insertPackage(file = tgz_path, repodir = "../drat/")
+  drat::insertPackage(file = tgz_path, repodir = "../drat/")
   message("Cleanup .....")
   file.remove(tgz_path)
 
