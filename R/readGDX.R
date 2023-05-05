@@ -28,9 +28,9 @@ readGDX <- function(gdx, name, use_model_name = "IMPACT", verbosity = FALSE) {
   # gasmtransfer 1.6 was release with GAMS 41
   # gasmtransfer 1.12 was released with GAMS 42!
 
-  # Temp bugfix for v1.6 of gamstransfer
-
-  if(gt_rev == 1.6) gt_rev <- 1.06
+  # Temp bugfix for v1.6 and 1.8 of gamstransfer
+  # Force downgrade with one order of magnitude
+  if (gt_rev %in% c(1.6,1.8)) gt_rev <- gt_rev/10
 
   m <- gamstransfer::Container$new()
 
