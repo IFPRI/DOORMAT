@@ -65,7 +65,7 @@ aggregateIMPACT <- function(df = NULL,
       !(colnames(dfx) %in% c(intersect(names(domain_vector),
                                        names(valid_domains)),
                              "value", "name", "world"))]
-    pre_sum <- sum(dfx$value)
+    pre_sum <- sum(dfx$value,na.rm = TRUE)
     out <- dfx %>%
       group_by(across(all_of(aggr_cols))) %>%
       summarise(value = sum(value, na.rm = TRUE))
