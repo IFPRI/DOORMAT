@@ -12,7 +12,7 @@
 #' @author Abhijeet Mishra
 
 drat_source_build <- function(lib = ".") {
-  message("Building source .....")
+  message("Building source pakcage for drat .....")
   devtools::build(pkg = lib, path = lib)
   options(dratBranch = "docs")
   message("Finding source package .....")
