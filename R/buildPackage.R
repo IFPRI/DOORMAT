@@ -21,7 +21,7 @@
 
 buildPackage <- function(lib = ".", quiet = FALSE, ignore_lintr = FALSE) {
   cat("Running lintr ....\n")
-  if(ignore_lintr){
+  if (!ignore_lintr) {
     lintr_out <- lintr::lint_package(path = lib)
     if (length(lintr_out) > 0) {
       cat("Run lintr::lint_package('.') to see lintr warnings.\n")
@@ -49,15 +49,14 @@ buildPackage <- function(lib = ".", quiet = FALSE, ignore_lintr = FALSE) {
     stop("Build package failed, please fix above Error(s)/Warning(s)/Note(s)")
   } else if (!check_flag) {
     cat("Package check successful\n")
-    user_promt <-
-      menu(c("Yes", "No"),
-           title = "Would you like to install this package on your computer?")
-    if (user_promt == 1) {
-      use_version()
-      pkg_install(pkg = lib, ask = FALSE)
-      }
+    message("Installing package locally ...")
+    use_version()
+    pkg_install(pkg = lib, ask = FALSE)
+    gert::git_add(".")
+    # Use new key formats -
+    # https://stackoverflow.com/a/62278407
+    gert::git_commit(message = paste0("package update ", check_package$version))
+    gert::git_push()
+    message("Commit successful .....")
   }
-
-  message("Preparing package for drat update\n")
-  drat_source_build(lib = lib)
 }

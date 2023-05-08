@@ -30,14 +30,14 @@ readGDX <- function(gdx, name, use_model_name = "IMPACT", verbosity = FALSE) {
 
   # Temp bugfix for v1.6 and 1.8 of gamstransfer
   # Force downgrade with one order of magnitude
-  if (gt_rev %in% c(1.6,1.8)) gt_rev <- gt_rev/10
+  if (gt_rev %in% c(1.6, 1.8)) gt_rev <- gt_rev / 10
 
   m <- gamstransfer::Container$new()
 
   if (gt_rev >= 1.12) {
 
     m$read(gdx, name, records = TRUE)
-    property_name = m$listSymbols()
+    property_name <- m$listSymbols()
     df <- m[property_name]$records
     colnames(df) <- tolower(c(m[property_name]$domain, "value"))
     df$description <- m[property_name]$description

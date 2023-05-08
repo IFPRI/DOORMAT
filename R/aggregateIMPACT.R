@@ -42,8 +42,8 @@ aggregateIMPACT <- function(df = NULL,
       sp_mapping = sp_mapping)
   }
 
-  if (keep_cty & "cty" %in% names(map_list)) {
-    map_list$cty$region = map_list$cty$country
+  if (keep_cty && "cty" %in% names(map_list)) {
+    map_list$cty$region <- map_list$cty$country
   }
 
   dfx  <- df[["data"]]
@@ -65,7 +65,7 @@ aggregateIMPACT <- function(df = NULL,
       !(colnames(dfx) %in% c(intersect(names(domain_vector),
                                        names(valid_domains)),
                              "value", "name", "world"))]
-    pre_sum <- sum(dfx$value,na.rm = TRUE)
+    pre_sum <- sum(dfx$value, na.rm = TRUE)
     out <- dfx %>%
       group_by(across(all_of(aggr_cols))) %>%
       summarise(value = sum(value, na.rm = TRUE))
