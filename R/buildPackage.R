@@ -7,7 +7,7 @@
 #'
 #' @importFrom devtools check document
 #' @importFrom pak pkg_install
-#' @importFrom utils menu
+#' @importFrom utils menu packageVersion
 #' @importFrom rlang is_empty
 #' @importFrom usethis use_version
 #' @importFrom lintr lint_package
@@ -53,10 +53,16 @@ buildPackage <- function(lib = ".", quiet = FALSE, ignore_lintr = FALSE) {
     message("Installing package locally ...")
     use_version()
     pkg_install(pkg = lib, ask = FALSE)
+    message("Preparing commit ...")
+    message("Package added to commit ...")
     gert::git_add(lib)
     # Use new key formats -
     # https://stackoverflow.com/a/62278407
-    gert::git_commit(message = paste0("package update ", check_package$version))
+    message("Extract version info ...")
+    pkg_version <- packageVersion(basename(getwd()))
+    message("Adding commit message ...")
+    gert::git_commit(message = paste0("package update ", pkg_version))
+    message("Pushing to GitHub ...")
     gert::git_push()
     message("Commit successful .....")
     drat_source_build()
