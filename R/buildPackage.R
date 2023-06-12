@@ -54,7 +54,7 @@ buildPackage <- function(lib = ".", quiet = FALSE, ignore_lintr = FALSE) {
     use_version()
     pkg_install(pkg = lib, ask = FALSE)
     message("Preparing commit ...")
-    gert::git_add(".")
+    gert::git_add(lib)
     message("Package added to commit ...")
     # Use new key formats -
     # https://stackoverflow.com/a/62278407

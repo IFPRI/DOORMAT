@@ -28,7 +28,7 @@ drat_source_build <- function(lib = ".") {
   message("Temporarliy moving to drat directory .....")
   new_path <- "../drat/"
   setwd(new_path)
-  gert::git_add(".")
+  gert::git_add(lib)
   # Use new key formats -
   # https://stackoverflow.com/a/62278407
   gert::git_commit(message = paste0("DRAT update ", tgz_path))
