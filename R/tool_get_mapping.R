@@ -34,7 +34,7 @@ tool_get_mapping <- function(type = NULL,
   }
 
   if (sheet == "Aggregation Regions") {
-    range_vector <- "A8:T166"
+    range_vector <- "A8:W166"
     mapping <- read_xlsx(path = fpath,
                          sheet = sheet,
                          range = range_vector,
