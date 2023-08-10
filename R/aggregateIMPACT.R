@@ -20,7 +20,7 @@
 aggregateIMPACT <- function(df = NULL,
                             level = "regglo",
                             aggr_type = "sum",
-                            sp_mapping = "Standard-IMPACT_dis1",
+                            sp_mapping = "CG6",
                             keep_cty = FALSE) {
   # ****************************************************************************
   # Visible binding for global variable fix
@@ -54,9 +54,7 @@ aggregateIMPACT <- function(df = NULL,
       map_dummy[nrow(map_dummy) + 1, ] <- rep("GLO", ncol(map_dummy))
     }
     colnames(map_dummy)[1] <- name
-    temp <- merge(dfx, map_dummy, by = name)
-    if (nrow(temp) != nrow(dfx)) warning(
-      "Merge was likley not successful.\nProceed with EXTREME caution")
+    temp <- merge(dfx, map_dummy, by = name, all = TRUE)
     dfx <- temp
   }
 
@@ -70,9 +68,9 @@ aggregateIMPACT <- function(df = NULL,
       group_by(across(all_of(aggr_cols))) %>%
       summarise(value = sum(value, na.rm = TRUE))
     post_sum <- sum(out$value)
-    if (round(pre_sum) != round(post_sum)
-        ) stop(
-          "Possible error in aggregation.")
+    if (round(pre_sum) != round(post_sum)) {
+      stop("Possible error in aggregation.")
+    }
 
     if (level == "regglo") {
       aggr_cols <- aggr_cols[!(aggr_cols %in% "region")]
@@ -80,44 +78,15 @@ aggregateIMPACT <- function(df = NULL,
         return(out)
         stop()
       }
-      pre_sum <- sum(out[out$region != "GLO", ]$value)
       out_glo <- out %>%
         group_by(across(all_of(aggr_cols))) %>%
         summarise(value = sum(value, na.rm = TRUE))
       out_glo$region <- "GLO"
       out_glo <- out_glo[, colnames(out)]
-      post_sum <- sum(out_glo[out_glo$region == "GLO", ]$value)
-      if (round(pre_sum) != round(post_sum)
-      ) stop(
-        "Possible error in aggregation.")
+
       out <- rbind(out, out_glo)
     }
   }
-
-  if (aggr_type == "mean") {
-    aggr_cols <-
-      colnames(dfx)[!(colnames(dfx) %in% c(intersect(names(domain_vector),
-                                                     names(valid_domains)),
-                                           "value", "name", "world"))]
-    out <- dfx %>%
-      group_by(across(all_of(aggr_cols))) %>%
-      summarise(value = mean(value))
-
-    if (level == "regglo") {
-      aggr_cols <- aggr_cols[!(aggr_cols %in% "region")]
-      if (nrow(out[out$region != "GLO", ]) == 0) {
-        return(out)
-        stop()
-      }
-      out_glo <- out %>%
-        group_by(across(all_of(aggr_cols))) %>%
-        summarise(value = mean(value, na.rm = TRUE))
-      out_glo$region <- "GLO"
-      out_glo <- out_glo[, colnames(out)]
-      out <- rbind(out, out_glo)
-    }
-  }
-
 
   return(out)
 }

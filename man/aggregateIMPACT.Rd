@@ -8,7 +8,7 @@ aggregateIMPACT(
   df = NULL,
   level = "regglo",
   aggr_type = "sum",
-  sp_mapping = "Standard-IMPACT_dis1",
+  sp_mapping = "CG6",
   keep_cty = FALSE
 )
 }
