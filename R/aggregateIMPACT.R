@@ -20,7 +20,7 @@
 aggregateIMPACT <- function(df = NULL,
                             level = "regglo",
                             aggr_type = "sum",
-                            sp_mapping = "CG6",
+                            sp_mapping = "Standard-IMPACT_dis1",
                             keep_cty = FALSE) {
   # ****************************************************************************
   # Visible binding for global variable fix
@@ -85,6 +85,7 @@ aggregateIMPACT <- function(df = NULL,
       out_glo <- out_glo[, colnames(out)]
 
       out <- rbind(out, out_glo)
+      out <- out[!is.na(out$yrs), ]
     }
   }
 
