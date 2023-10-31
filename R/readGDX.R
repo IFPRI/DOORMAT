@@ -6,6 +6,7 @@
 #' IMPACT results.
 #' @param verbosity If additional messages should be printed about variable
 #' being read
+#' @param quick_df if description and model name column should be dropped
 #'
 #' @importFrom dplyr relocate
 #' @importFrom utils packageDescription
@@ -18,8 +19,9 @@
 #' }
 #' @author Abhijeet Mishra
 
-readGDX <- function(gdx, name, use_model_name = "IMPACT", verbosity = FALSE) {
-  value <- model <- NULL
+readGDX <- function(gdx, name, use_model_name = "IMPACT", verbosity = FALSE,
+                    quick_df = FALSE) {
+  value <- model <- description <- NULL
 
   # Grab gamstransfer version
   gt_rev <- as.numeric(packageDescription("gamstransfer")$Version)
@@ -64,6 +66,8 @@ readGDX <- function(gdx, name, use_model_name = "IMPACT", verbosity = FALSE) {
 
   df <- df %>% relocate(value, .after = model)
   if (verbosity) message("Reading '", name, "' from\n", gdx)
+
+  if (quick_df) df <- subset(df, select = -c(description, model))
   out_list <- list()
   out_list[["data"]] <- df
   out_list[["domains"]] <- domains

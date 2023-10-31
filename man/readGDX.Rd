@@ -4,7 +4,13 @@
 \alias{readGDX}
 \title{R utility package for reading objects from a GDX file.}
 \usage{
-readGDX(gdx, name, use_model_name = "IMPACT", verbosity = FALSE)
+readGDX(
+  gdx,
+  name,
+  use_model_name = "IMPACT",
+  verbosity = FALSE,
+  quick_df = FALSE
+)
 }
 \arguments{
 \item{gdx}{Path to the gdx file}
@@ -16,6 +22,8 @@ IMPACT results.}
 
 \item{verbosity}{If additional messages should be printed about variable
 being read}
+
+\item{quick_df}{if description and model name column should be dropped}
 }
 \value{
 Parameter and domain of gdx output result queried
