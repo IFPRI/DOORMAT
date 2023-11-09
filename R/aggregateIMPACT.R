@@ -89,5 +89,7 @@ aggregateIMPACT <- function(df = NULL,
     }
   }
 
+  out <- unique(out)
+
   return(out)
 }
