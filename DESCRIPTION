@@ -20,11 +20,8 @@ Imports:
     drat (>= 0.2.4.1),
     gert (>= 2.0.0),
     devtools (>= 2.4.5)
-Depends:
-    R (>= 4.2.2)
 Suggests: 
-    gamstransfer (>= 1.12),
-    DOORMAT (>= 3.7.3)
+    gamstransfer (>= 1.12)
 Remotes:
     github::eddelbuettel/drat
 Additional_repositories: https://ifpri.github.io/drat
