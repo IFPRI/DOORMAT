@@ -1,7 +1,7 @@
 Package: DOORMAT
 Type: Package
 Title: Data processor for IMPACT model (Data prOcessor fOR iMpAcT)
-Version: 3.13.3
+Version: 3.14.0
 Authors@R: c(
     person("Abhijeet", "Mishra", , "A.Mishra@cgiar.org", role = c("aut", "cre"))
     )
@@ -10,7 +10,7 @@ License: GPL (>= 3)
 Encoding: UTF-8
 RoxygenNote: 7.2.3
 Imports: 
-    pak (>= 0.6.0),
+    pak (>= 0.7.1),
     utils,
     rlang (>= 1.1.2),
     usethis (>= 2.2.2),
@@ -19,7 +19,7 @@ Imports:
     lintr (>= 3.1.1),
     drat (>= 0.2.4.1),
     gert (>= 2.0.0),
-    devtools (>= 2.4.5)
+    devtools (>= 2.4.5.9000)
 Suggests: 
     gamstransfer (>= 1.12)
 Remotes:
