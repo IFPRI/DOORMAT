@@ -3,6 +3,7 @@
 export(aggregateIMPACT)
 export(buildPackage)
 export(drat_source_build)
+export(findMapping)
 export(readGDX)
 export(tool_get_domain_mapping)
 export(tool_get_mapping)
