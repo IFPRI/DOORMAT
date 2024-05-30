@@ -24,7 +24,12 @@ readGDX <- function(gdx, name, use_model_name = "IMPACT", verbosity = FALSE,
   value <- model <- description <- NULL
 
   # Grab gamstransfer version
-  gt_rev <- as.numeric(packageDescription("gamstransfer")$Version)
+  testing <- packageDescription("gamstransfer")$Version
+  # Only keep major + minor revisions to convert to numeric values
+  testing <- paste0(strsplit(testing, split = "\\.")[[1]][1],
+                    ".",
+                    strsplit(testing, split = "\\.")[[1]][2])
+  gt_rev <- as.numeric(testing)
 
   # GAMS released gamstransfer 1.6 before 1.12 not sure why
   # gasmtransfer 1.6 was release with GAMS 41
